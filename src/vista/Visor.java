@@ -32,7 +32,7 @@ public class Visor {
 	}
 
 	public static void mostrarError() {
-		System.out.println("Error Usuario No resgitrado");
+		System.out.println("No hay criterios que coincidan con esa busqueda");;
 
 	}
 
@@ -40,9 +40,9 @@ public class Visor {
 		System.out.println(reserva + " :: realizada");
 	}
 
-	public static Hotel mostarHabitacionHotel(Scanner scan, Hotel hotel) {
-		return GestorBBDD.verHabitacionesDeunHotel(scan,hotel);
-	}
+//	public static Hotel mostarHabitacionHotel(Scanner scan, Hotel hotel) {
+//		return GestorBBDD.verHabitacionesDeunHotel(scan,hotel);
+//	}
 
 	public static void mostrHabitacion(Habitacion habitacion) {
 		System.out.println(habitacion);
@@ -72,5 +72,29 @@ public class Visor {
 		for (Reserva reserva : reservas) {
 			System.out.println(reserva);
 		}
+	}
+
+	public static void mostrarSucces(Cliente cliente) {
+		System.out.println("Cliente " + cliente.getNombre() + " Registrado!");
+		
+	}
+
+	public static void mostrHabitaciones(ArrayList<Habitacion> habitaciones) {
+		for (Habitacion habitacion : habitaciones) {
+			System.err.println(habitacion);
+		}
+		
+	}
+
+	public static void mostrarHabitaciones(ArrayList<Habitacion> habitaciones) {
+		for (Habitacion habitacion : habitaciones) {
+			System.out.println(habitacion);
+		}
+		
+	}
+
+	public static void mostrarErrorCliente(String dni) {
+		System.out.println("El cliente con DNI " + dni + " Tiene una reserva hecha y no se borrar");
+		
 	}
 }

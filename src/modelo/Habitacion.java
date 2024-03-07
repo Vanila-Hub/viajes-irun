@@ -1,11 +1,22 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Habitacion {
 	private int id;
 	private int numero;
 	private String descripcion;
 	private int precio;
-	private Hotel hotel;
+	private int id_hotel;
+	
+	public int getId_hotel() {
+		return id_hotel;
+	}
+	public void setId_hotel(int id_hotel) {
+		this.id_hotel = id_hotel;
+	}
+
+	private ArrayList<Hotel>hoteles=new ArrayList<Hotel>();
 	public int getId() {
 		return id;
 	}
@@ -30,17 +41,14 @@ public class Habitacion {
 	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
-	public Hotel getHotel() {
-		return hotel;
+	public void setHoteles(ArrayList<Hotel> hoteles) {
+		this.hoteles=hoteles;
 	}
-	public void setHotel(Hotel hotel) {
-		this.hotel = hotel;
-	}
-
 	@Override
 	public String toString() {
 		return "Habitacion [id=" + id + ", numero=" + numero + ", descripcion=" + descripcion + ", precio=" + precio
-				+ ", hotel=" + hotel.getNombre();
+				+ ", id_hotel=" + id_hotel + ", hoteles=" + hoteles.toString() + "]";
 	}
-	
+
+
 }

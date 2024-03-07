@@ -51,7 +51,7 @@ public class Menu {
 	public void mostrarMenuClientes() {
 		System.out.println(VER_CLIENTES_ORDENADOS_POR_APELLIDO + ". ver clientes ordenados por apellido");
 		System.out.println(VER_CLIENTES_ORDENADOS_POR_NOMBRE + ". ver clientes ordenados por nombre");
-		System.out.println(VER_CLIENTES_QUE_CONTENGAN_CADENA + ". ver clientes ver clientes que en su nombre o apellido contenga una cadena");
+		System.out.println(VER_CLIENTES_QUE_CONTENGAN_CADENA + ". ver clientes que en su nombre o apellido contenga una cadena");
 		System.out.println(SALIR + ". Salir");
 		System.out.print("Seleccione una opción: ");
 	}

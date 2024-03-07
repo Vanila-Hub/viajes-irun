@@ -38,7 +38,10 @@ public class Formulario {
 	        cliente.setDireccion(direccion);
 	        System.out.println("Introduce la localidad:");
 	        String localidad = scan.nextLine();
-	        cliente.setLocalidad(localidad);		
+	        cliente.setLocalidad(localidad);	
+	        System.out.println("Introduzca el DNI del cliente");
+	        String dni = scan.nextLine();
+	        cliente.setDni(dni);
 	        return cliente;
 	}
 
@@ -94,7 +97,9 @@ public class Formulario {
 		return id;
 	}
 
-	public static Hotel pedirNuevosDatorHotel(Scanner scan, Hotel hotel) {
+	public static Hotel pedirNuevosDatorHotel(Scanner scan) {
+		
+		Hotel hotel = new Hotel();
 		System.out.println("Introduzca el Cif del Hotel");
 		hotel.setCif(scan.nextLine());
 		System.out.println("Introduzca la compañia del Hotel");
@@ -135,5 +140,11 @@ public class Formulario {
 		System.out.println("Introduzca el dni del cliente");
 		String dni;
 		return dni=scan.nextLine();
+	}
+
+	public static String pedirCif(Scanner scan) {
+		System.out.println("introduzca el Cif del Hotel");
+		String cif = scan.nextLine();
+		return cif;
 	}
 }

@@ -1,10 +1,15 @@
 package controlador;
 
+import java.util.Date;
 import java.util.Scanner;
 
+import modelo.Cliente;
 import modelo.GestorBBDD;
+import modelo.Habitacion;
+import modelo.Hotel;
 import vista.Formulario;
 import vista.Menu;
+import vista.Visor;
 
 public class GestorHotel {
 	public static void main(String[] args) {
@@ -52,32 +57,45 @@ public class GestorHotel {
 	}
 
 	private static void darAltaHotel(Scanner scan) {
-		GestorBBDD.darAltaHotel(scan);
+		Hotel hotel = Formulario.pedirNuevosDatorHotel(scan);
+		GestorBBDD.darAltaHotel(scan, hotel);
 
 	}
 
 	private static void anularHabitacion(Scanner scan) {
-		GestorBBDD.borrarHabitacion(scan);
+		int id_habitacion = Formulario.pedirIdHabitacion(scan);
+		GestorBBDD.borrarHabitacion(scan,id_habitacion);
 
 	}
 
 	private static void anularReserva(Scanner scan) {
-		GestorBBDD.anularReserva(scan);
+		int id_reserva = Formulario.pedirIdReserva(scan); 
+		GestorBBDD.anularReserva(scan,id_reserva);
 
 	}
 
 	private static void editarHabitacion(Scanner scan) {
-		GestorBBDD.editarHabitacion(scan);
+		int id_habitacion = Formulario.pedirIdHabitacion(scan);
+		Habitacion habitacion = new Habitacion();
+		habitacion = GestorBBDD.getHabitacionID(id_habitacion);
+		habitacion = Formulario.modificarHabitacion(scan,habitacion);
+		GestorBBDD.editarHabitacion(habitacion);
 
 	}
 
 	private static void verHotelHabitaciones(Scanner scan) {
-		GestorBBDD.verHotelHabitaciones(scan);
+		String hotel_cif = Formulario.pedirCif(scan);
+		GestorBBDD.verHotelHabitaciones(scan,hotel_cif);
 
 	}
 
 	private static void darAltaReserva(Scanner scan) {
-		GestorBBDD.darAltaReserva(scan);
+		String dni = Formulario.pedriDNI(scan);
+		String nombre_hotel = Formulario.pedirNombreHotel(scan);
+
+		Date fechaDesde =  Formulario.pedirFechaDesde(scan);
+		Date fechaAsta =  Formulario.pedirFechaHasta(scan);
+		GestorBBDD.darAltaReserva(scan,dni,nombre_hotel, fechaAsta,fechaDesde);
 	}
 
 	private static void verReservas(Scanner scan) {
@@ -91,10 +109,12 @@ public class GestorHotel {
 				GestorBBDD.verReservasEndosFechas();
 				break;
 			case Menu.CONSULTAR_RESERVAS_DE_UN_CLIENTE:
-				GestorBBDD.verReservasCliente();
+				String dni_Cliente = Formulario.pedirDniCliente();
+				GestorBBDD.verReservasCliente(dni_Cliente);
 				break;
 			case Menu.CONSULTAR_RESERVA_POR_HOTEL:
-				GestorBBDD.verReservas(scan);
+				int id_hotel = Formulario.pedirIdHotel(scan);
+				GestorBBDD.verReservas(id_hotel);
 				break;
 			default:
 				break;
@@ -103,12 +123,19 @@ public class GestorHotel {
 	}
 
 	private static void borrarCliente(Scanner scan) {
-		GestorBBDD.borraCliente(scan);
+		Cliente cliente = new Cliente();
+		String dni = Formulario.pedriDNI(scan);
+		if (GestorBBDD.getDniCliente(dni)!=true) {
+			GestorBBDD.borraCliente(scan,dni);	
+		}else {
+			Visor.mostrarErrorCliente(dni);
+		}
 	}
 
 	private static void darAltaCliente(Scanner scan) {
-		GestorBBDD.darAtltaCliente(scan);
-
+		Cliente cliente = new Cliente();
+		cliente = Formulario.modificarCliente(cliente, scan);
+		GestorBBDD.darAtltaCliente(scan,cliente);
 	}
 
 	//	private static void modificarClientes(Scanner scan) {
@@ -129,7 +156,8 @@ public class GestorHotel {
 				GestorBBDD.verCleintesOrdenadosN();
 				break;
 			case Menu.VER_CLIENTES_QUE_CONTENGAN_CADENA:
-				GestorBBDD.verClientes();
+				String cadenaIntroducida = Formulario.pedirStringTeclado();
+				GestorBBDD.verClientes(cadenaIntroducida);
 				break;
 			default:
 				break;
