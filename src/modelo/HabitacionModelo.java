@@ -11,7 +11,7 @@ import java.util.Scanner;
 import vista.Formulario;
 import vista.Visor;
 
-public class HabitacionModelo extends GestorBBDD {
+public class HabitacionModelo {
 	
 	public static Habitacion getHabitacionID(int id_habitacion) {
 		Habitacion habitacion = new Habitacion();

@@ -11,7 +11,7 @@ import java.util.Scanner;
 import vista.Formulario;
 import vista.Visor;
 
-public class ReservaModelo extends GestorBBDD {
+public class ReservaModelo {
 	public static void verReservas(int id_hotel) {
 		ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 

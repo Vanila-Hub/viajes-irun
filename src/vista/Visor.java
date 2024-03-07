@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import modelo.Cliente;
-import modelo.GestorBBDD;
 import modelo.Habitacion;
 import modelo.Hotel;
 import modelo.Reserva;

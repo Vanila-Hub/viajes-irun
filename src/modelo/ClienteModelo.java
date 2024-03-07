@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 import vista.Visor;
 
-public class ClienteModelo extends GestorBBDD {
+public class ClienteModelo {
 	
 	public static void verClientes(String cadenaIntroducida){
 		ArrayList<Cliente> clientes = new ArrayList<Cliente>();

@@ -12,7 +12,7 @@ import vista.Formulario;
 import vista.Menu;
 import vista.Visor;
 
-public class HotelModelo extends GestorBBDD{
+public class HotelModelo{
 	public static Hotel getHotelById(int id) {
 		Hotel hotel = new Hotel();
 		try {
