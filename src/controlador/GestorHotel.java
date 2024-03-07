@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import modelo.Cliente;
 import modelo.ClienteModelo;
-import modelo.GestorBBDD;
 import modelo.Habitacion;
 import modelo.HabitacionModelo;
 import modelo.Hotel;
