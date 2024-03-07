@@ -4,9 +4,13 @@ import java.util.Date;
 import java.util.Scanner;
 
 import modelo.Cliente;
+import modelo.ClienteModelo;
 import modelo.GestorBBDD;
 import modelo.Habitacion;
+import modelo.HabitacionModelo;
 import modelo.Hotel;
+import modelo.HotelModelo;
+import modelo.ReservaModelo;
 import vista.Formulario;
 import vista.Menu;
 import vista.Visor;
@@ -58,34 +62,34 @@ public class GestorHotel {
 
 	private static void darAltaHotel(Scanner scan) {
 		Hotel hotel = Formulario.pedirNuevosDatorHotel(scan);
-		GestorBBDD.darAltaHotel(scan, hotel);
+		HotelModelo.darAltaHotel(scan, hotel);
 
 	}
 
 	private static void anularHabitacion(Scanner scan) {
 		int id_habitacion = Formulario.pedirIdHabitacion(scan);
-		GestorBBDD.borrarHabitacion(scan,id_habitacion);
+		HabitacionModelo.borrarHabitacion(scan,id_habitacion);
 
 	}
 
 	private static void anularReserva(Scanner scan) {
 		int id_reserva = Formulario.pedirIdReserva(scan); 
-		GestorBBDD.anularReserva(scan,id_reserva);
+		ReservaModelo.anularReserva(scan,id_reserva);
 
 	}
 
 	private static void editarHabitacion(Scanner scan) {
 		int id_habitacion = Formulario.pedirIdHabitacion(scan);
 		Habitacion habitacion = new Habitacion();
-		habitacion = GestorBBDD.getHabitacionID(id_habitacion);
+		habitacion = HabitacionModelo.getHabitacionID(id_habitacion);
 		habitacion = Formulario.modificarHabitacion(scan,habitacion);
-		GestorBBDD.editarHabitacion(habitacion);
+		HabitacionModelo.editarHabitacion(habitacion);
 
 	}
 
 	private static void verHotelHabitaciones(Scanner scan) {
 		String hotel_cif = Formulario.pedirCif(scan);
-		GestorBBDD.verHotelHabitaciones(scan,hotel_cif);
+		HotelModelo.verHotelHabitaciones(scan,hotel_cif);
 
 	}
 
@@ -95,7 +99,7 @@ public class GestorHotel {
 
 		Date fechaDesde =  Formulario.pedirFechaDesde(scan);
 		Date fechaAsta =  Formulario.pedirFechaHasta(scan);
-		GestorBBDD.darAltaReserva(scan,dni,nombre_hotel, fechaAsta,fechaDesde);
+		ReservaModelo.darAltaReserva(scan,dni,nombre_hotel, fechaAsta,fechaDesde);
 	}
 
 	private static void verReservas(Scanner scan) {
@@ -106,15 +110,15 @@ public class GestorHotel {
 			opcion = Formulario.pedirOpciones(scan);
 			switch (opcion) {
 			case Menu.CONSULTA_RESERVAS_EN_DOS_FECHAS:
-				GestorBBDD.verReservasEndosFechas();
+				ReservaModelo.verReservasEndosFechas();
 				break;
 			case Menu.CONSULTAR_RESERVAS_DE_UN_CLIENTE:
 				String dni_Cliente = Formulario.pedirDniCliente();
-				GestorBBDD.verReservasCliente(dni_Cliente);
+				ClienteModelo.verReservasCliente(dni_Cliente);
 				break;
 			case Menu.CONSULTAR_RESERVA_POR_HOTEL:
 				int id_hotel = Formulario.pedirIdHotel(scan);
-				GestorBBDD.verReservas(id_hotel);
+				ReservaModelo.verReservas(id_hotel);
 				break;
 			default:
 				break;
@@ -125,8 +129,8 @@ public class GestorHotel {
 	private static void borrarCliente(Scanner scan) {
 		Cliente cliente = new Cliente();
 		String dni = Formulario.pedriDNI(scan);
-		if (GestorBBDD.getDniCliente(dni)!=true) {
-			GestorBBDD.borraCliente(scan,dni);	
+		if (ClienteModelo.getDniCliente(dni)!=true) {
+			ClienteModelo.borraCliente(scan,dni);	
 		}else {
 			Visor.mostrarErrorCliente(dni);
 		}
@@ -135,7 +139,7 @@ public class GestorHotel {
 	private static void darAltaCliente(Scanner scan) {
 		Cliente cliente = new Cliente();
 		cliente = Formulario.modificarCliente(cliente, scan);
-		GestorBBDD.darAtltaCliente(scan,cliente);
+		ClienteModelo.darAtltaCliente(scan,cliente);
 	}
 
 	//	private static void modificarClientes(Scanner scan) {
@@ -150,14 +154,14 @@ public class GestorHotel {
 			opcion = Formulario.pedirOpciones(scan);
 			switch (opcion) {
 			case Menu.VER_CLIENTES_ORDENADOS_POR_APELLIDO:
-				GestorBBDD.verClientesOrdenadosA();
+				ClienteModelo.verClientesOrdenadosA();
 				break;
 			case Menu.VER_CLIENTES_ORDENADOS_POR_NOMBRE:
-				GestorBBDD.verCleintesOrdenadosN();
+				ClienteModelo.verCleintesOrdenadosN();
 				break;
 			case Menu.VER_CLIENTES_QUE_CONTENGAN_CADENA:
 				String cadenaIntroducida = Formulario.pedirStringTeclado();
-				GestorBBDD.verClientes(cadenaIntroducida);
+				ClienteModelo.verClientes(cadenaIntroducida);
 				break;
 			default:
 				break;
