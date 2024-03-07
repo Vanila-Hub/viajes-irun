@@ -24,10 +24,8 @@ public class Visor {
 		System.out.println(reserva);
 	}
 
-	public static void mostrarHoteles(ArrayList<Hotel> hoteles) {
-		for (Hotel hotel : hoteles) {
-			System.out.println(hotel);
-		}
+	public static void mostrarHoteles(Hotel hotel) {
+		System.out.println(hotel);
 	}
 
 	public static void mostrarError() {

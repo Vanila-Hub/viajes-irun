@@ -11,7 +11,6 @@ public class Reserva {
 	private java.util.Date desde;
 	private java.util.Date hasta;
 	
-
 	public int getId() {
 		return id;
 	}

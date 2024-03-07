@@ -88,7 +88,9 @@ public class GestorHotel {
 
 	private static void verHotelHabitaciones(Scanner scan) {
 		String hotel_cif = Formulario.pedirCif(scan);
-		HotelModelo.verHotelHabitaciones(scan,hotel_cif);
+		Hotel hotel = HotelModelo.verHotelHabitaciones(scan,hotel_cif);
+		Visor.mostrarHoteles(hotel);
+		
 
 	}
 

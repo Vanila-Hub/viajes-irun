@@ -8,6 +8,7 @@ public class Habitacion {
 	private String descripcion;
 	private int precio;
 	private int id_hotel;
+	private ArrayList<Hotel>hoteles=new ArrayList<Hotel>();
 	
 	public int getId_hotel() {
 		return id_hotel;
@@ -16,7 +17,6 @@ public class Habitacion {
 		this.id_hotel = id_hotel;
 	}
 
-	private ArrayList<Hotel>hoteles=new ArrayList<Hotel>();
 	public int getId() {
 		return id;
 	}

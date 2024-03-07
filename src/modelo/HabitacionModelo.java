@@ -27,6 +27,7 @@ public class HabitacionModelo {
 				habitacion.setPrecio(rst.getInt("precio"));
 				habitacion.setId_hotel(rst.getInt("id_hotel"));
 			}
+			//aqui
 			Conector.CERRAR();
 			return habitacion;
 		} catch (SQLException e) {
@@ -59,12 +60,12 @@ public class HabitacionModelo {
 		return null;
 	}
 	
-	public static void getHabitaciones(Hotel hotel) {
+	public static Hotel getHabitaciones(Hotel hotel) {
 		ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
 		try {
 			String sql = "SELECT * FROM habitaciones WHERE id_hotel = ?";
 			PreparedStatement prst = Conector.conectar().prepareStatement(sql);
-			prst.setString(1, hotel.getCif());
+			prst.setInt(1, hotel.getId());
 			ResultSet rs = prst.executeQuery();
 			while(rs.next()) {
 				Habitacion habitacion = new Habitacion();
@@ -74,19 +75,22 @@ public class HabitacionModelo {
 				habitacion.setPrecio(rs.getInt("precio"));
 				habitaciones.add(habitacion);
 			}
-			Visor.mostrHabitaciones(habitaciones);
+			hotel.setHabitaciones(habitaciones);
+			return hotel;
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		return null;
 	}
 
 	public static void editarHabitacion(Habitacion habitacion) {
 		try {
-			String sql = "UPDATE habitaciones SET numero=?,descripcion=?,precio=?";
+			String sql = "UPDATE habitaciones SET numero=?,descripcion=?,precio=? WHERE id=?";
 			PreparedStatement prst = Conector.conectar().prepareStatement(sql);
 			prst.setInt(1, habitacion.getNumero());
 			prst.setString(2, habitacion.getDescripcion());
 			prst.setInt(3, habitacion.getPrecio());
+			prst.setInt(4, habitacion.getId());
 			prst.executeUpdate();
 			prst.close();
 			Visor.mostrHabitacion(habitacion);

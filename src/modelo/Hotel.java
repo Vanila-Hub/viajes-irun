@@ -9,7 +9,16 @@ public class Hotel {
 	private String gerente;
 	private int estrella;
 	private String compania;
+	private ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
 	
+	public ArrayList<Habitacion> getHabitaciones(){
+		
+		return habitaciones;
+	}
+	
+	public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
+		this.habitaciones=habitaciones;
+	}
 	public int getId() {
 		return id;
 	}
@@ -51,7 +60,7 @@ public class Hotel {
 	@Override
 	public String toString() {
 		return "Hotel [id=" + id + ", cif=" + cif + ", nombre=" + nombre + ", gerente=" + gerente + ", entrella="
-				+ estrella + ", compania=" + compania;
+				+ estrella + ", compania=" + compania + "Habitaciones" + habitaciones.toString();
 	}
 	
 }

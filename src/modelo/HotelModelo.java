@@ -60,7 +60,7 @@ public class HotelModelo{
 		return null;
 	}
 	
-	public static ArrayList<Habitacion> verHotelHabitaciones(Scanner scan, String hotel_cif) {
+	public static Hotel verHotelHabitaciones(Scanner scan, String hotel_cif) {
 		Hotel hotel = new Hotel();
 		try {
 			String sql = "SELECT * FROM hoteles WHERE hoteles.cif = ?";
@@ -82,8 +82,8 @@ public class HotelModelo{
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		HabitacionModelo.getHabitaciones(hotel);
-		return null;
+		hotel = HabitacionModelo.getHabitaciones(hotel);
+		return hotel;
 	}
 	
 public static void darAltaHotel(Scanner scan, Hotel hotel) {
