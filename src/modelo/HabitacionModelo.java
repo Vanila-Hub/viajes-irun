@@ -14,6 +14,7 @@ import vista.Visor;
 public class HabitacionModelo {
 	
 	public static Habitacion getHabitacionID(int id_habitacion) {
+		ArrayList<Hotel> hoteles = new ArrayList<Hotel>();
 		Habitacion habitacion = new Habitacion();
 		try {
 			String sql = "SELECT * FROM habitaciones WHERE habitaciones.id = " + id_habitacion;
@@ -21,11 +22,14 @@ public class HabitacionModelo {
 			Statement st = conexion.createStatement();
 			ResultSet rst = st.executeQuery(sql);
 			while(rst.next()) {
+				Hotel hotel = HotelModelo.getHotelById(rst.getInt("id_hotel"));
+				hoteles.add(hotel);
 				habitacion.setId(rst.getInt("id"));
 				habitacion.setNumero(rst.getInt("numero"));
 				habitacion.setDescripcion(rst.getString("descripcion"));
 				habitacion.setPrecio(rst.getInt("precio"));
 				habitacion.setId_hotel(rst.getInt("id_hotel"));
+				habitacion.setHoteles(hoteles);
 			}
 			//aqui
 			Conector.CERRAR();
@@ -51,8 +55,6 @@ public class HabitacionModelo {
 				habitacion.setPrecio(rst.getInt("precio"));
 				habitaciones.add(habitacion);
 			}
-			Visor.mostrarHabitaciones(habitaciones);
-			
 			return habitaciones;
 		} catch (Exception e) {
 		System.err.println(e);
@@ -75,7 +77,7 @@ public class HabitacionModelo {
 				habitacion.setPrecio(rs.getInt("precio"));
 				habitaciones.add(habitacion);
 			}
-			hotel.setHabitaciones(habitaciones);
+//			hotel.setHabitaciones(habitaciones);
 			return hotel;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -89,7 +91,7 @@ public class HabitacionModelo {
 			PreparedStatement prst = Conector.conectar().prepareStatement(sql);
 			prst.setInt(1, habitacion.getNumero());
 			prst.setString(2, habitacion.getDescripcion());
-			prst.setInt(3, habitacion.getPrecio());
+			prst.setFloat(3, habitacion.getPrecio());
 			prst.setInt(4, habitacion.getId());
 			prst.executeUpdate();
 			prst.close();
@@ -108,7 +110,7 @@ public class HabitacionModelo {
 			prst.setInt(1, hotel.getId());
 			prst.setInt(2, habitacion.getNumero());
 			prst.setString(3,  habitacion.getDescripcion());
-			prst.setInt(4,  habitacion.getPrecio());
+			prst.setFloat(4,  habitacion.getPrecio());
 		} catch (Exception e) {
 			System.err.println(e);
 		}

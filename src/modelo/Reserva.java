@@ -40,7 +40,7 @@ public class Reserva {
 	}
 	@Override
 	public String toString() {
-		return "Reserva [id=" + id + ", habitacion=" + habitaciones.toString() +  ", desde=" + desde
+		return "Reserva [id=" + id + ", \n habitacion=" + habitaciones.toString() +  "\n Cliente=" + clientes.toString() + ",\n desde=" + desde
 				+ ", hasta=" + hasta + "]";
 	}
 	

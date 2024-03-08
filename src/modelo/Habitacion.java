@@ -6,7 +6,7 @@ public class Habitacion {
 	private int id;
 	private int numero;
 	private String descripcion;
-	private int precio;
+	private float precio;
 	private int id_hotel;
 	private ArrayList<Hotel>hoteles=new ArrayList<Hotel>();
 	
@@ -35,10 +35,10 @@ public class Habitacion {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public int getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
-	public void setPrecio(int precio) {
+	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
 	public void setHoteles(ArrayList<Hotel> hoteles) {

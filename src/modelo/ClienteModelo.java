@@ -178,11 +178,11 @@ public class ClienteModelo {
 				Hotel hotel = HotelModelo.getHotelById(habitacion.getId_hotel());
 				hoteles.add(hotel);
 				//asignar hotel a la habitacion
-				
+				habitacion.setHoteles(hoteles);
+				habitaciones.add(habitacion);
 				//asignar Habitacion a la reserva
-				habitacion.setId_hotel(hotel.getId());
-				//add la habitacion al array de reservas
 				reserva.setHabitaciones(habitaciones);
+				//add la habitacion al array de reservas
 				reservas.add(reserva);
 			}
 			return reservas;

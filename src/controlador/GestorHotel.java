@@ -1,5 +1,6 @@
 package controlador;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ import modelo.Habitacion;
 import modelo.HabitacionModelo;
 import modelo.Hotel;
 import modelo.HotelModelo;
+import modelo.Reserva;
 import modelo.ReservaModelo;
 import vista.Formulario;
 import vista.Menu;
@@ -111,15 +113,26 @@ public class GestorHotel {
 			opcion = Formulario.pedirOpciones(scan);
 			switch (opcion) {
 			case Menu.CONSULTA_RESERVAS_EN_DOS_FECHAS:
-				ReservaModelo.verReservasEndosFechas();
+				Date fechaEntrada = Formulario.pedirFechaDesde(scan);
+				Date fechaSalida = Formulario.pedirFechaHasta(scan);
+				Reserva reserva = ReservaModelo.verReservasEndosFechas(fechaEntrada,fechaSalida);
+				Visor.mostrarReserva(reserva);
 				break;
 			case Menu.CONSULTAR_RESERVAS_DE_UN_CLIENTE:
 				String dni_Cliente = Formulario.pedirDniCliente();
-				ClienteModelo.verReservasCliente(dni_Cliente);
+				ArrayList<Reserva> reservas = ClienteModelo.verReservasCliente(dni_Cliente);
+				Visor.mostrarResrvas(reservas);
 				break;
 			case Menu.CONSULTAR_RESERVA_POR_HOTEL:
 				int id_hotel = Formulario.pedirIdHotel(scan);
-				ReservaModelo.verReservas(id_hotel);
+				ArrayList<Habitacion> haitaciones = HabitacionModelo.getHabitacionesHotel(scan, id_hotel);
+				ArrayList<Reserva> reservas2 = new ArrayList<Reserva>();
+				
+				for (Habitacion habitacion : haitaciones) {
+					reservas2 = ReservaModelo.verReservas(habitacion.getId());
+				}
+				Visor.mostrarResrvas(reservas2);
+				
 				break;
 			default:
 				break;
